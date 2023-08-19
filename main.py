@@ -1,12 +1,26 @@
 """
-Напишіть генератор, який видає послідовність квадратів чисел від 1 до N.
+Реалізуйте ітератор для перебору всіх ключів словника.
 """
 
 
-def square_generator(n):
-    for x in range(1, n+1):
-        yield x**2
+class DictKeyIterator:
+    def __init__(self, dictionary):
+        self.keys = list(dictionary.keys())
+        self.index = 0
+
+    def __iter__(self):
+        return self
+
+    def __next__(self):
+        if self.index < len(self.keys):
+            key = self.keys[self.index]
+            self.index += 1
+            return key
+        else:
+            raise StopIteration
 
 
-for g in square_generator(5):
-    print(g)
+my_dictionary = {"a": 1, "b": 2, "c": 3}
+dict_iter = DictKeyIterator(my_dictionary)
+for key in dict_iter:
+    print(key)
