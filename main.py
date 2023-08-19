@@ -1,26 +1,27 @@
 """
-Напишіть генератор, який фільтрує непарні числа з заданої послідовності.
+Напишіть генератор, який видає послідовність простих чисел.
 """
 
 
-class EvenRangeIterator:
-    def __init__(self, a, b):
-        self.current = a + (a % 2)
-        self.b = b
-
-    def __iter__(self):
-        return self
-
-    def __next__(self):
-        while self.current < self.b:
-            num = self.current
-            self.current += 2
-            return num
-
-        raise StopIteration
+def isprime(n):
+    if n == 1:
+        return False
+    for x in range(2, int(n ** 0.5) + 1):
+        if n % x == 0:
+            return False
+    return True
 
 
-even_nums = EvenRangeIterator(1, 10)
-for num in even_nums:
-    print(num)
+def prime_generator(n=2):
+    while True:
+        if isprime(n):
+            yield n
+        n += 1
+
+
+prime_gen = prime_generator()
+for i in range(10):
+    print(next(prime_gen))
+
+
 
