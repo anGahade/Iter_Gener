@@ -1,27 +1,12 @@
 """
-Створіть ітератор який буде приймати рядок та кожен виклик методу next()
-буде повертати наступний символ рядку.
+Напишіть генератор, який видає послідовність квадратів чисел від 1 до N.
 """
 
 
-class NextLetter:
-    def __init__(self, string):
-        self.string = string
-        self.index = 0
-
-    def __iter__(self):
-        return self
-
-    def __next__(self):
-        if self.index < len(self.string):
-            result = self.string[self.index]
-            self.index += 1
-            return result
-        else:
-            raise StopIteration
+def square_generator(n):
+    for x in range(1, n+1):
+        yield x**2
 
 
-string = "Hello, world!"
-str_itr = NextLetter(string)
-for char in string:
-    print(char)
+for g in square_generator(5):
+    print(g)
