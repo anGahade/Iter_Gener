@@ -1,26 +1,16 @@
 """
-Реалізуйте ітератор для перебору всіх ключів словника.
+Напишіть генератор, який фільтрує непарні числа з заданої послідовності.
 """
 
 
-class DictKeyIterator:
-    def __init__(self, dictionary):
-        self.keys = list(dictionary.keys())
-        self.index = 0
-
-    def __iter__(self):
-        return self
-
-    def __next__(self):
-        if self.index < len(self.keys):
-            key = self.keys[self.index]
-            self.index += 1
-            return key
-        else:
-            raise StopIteration
+def even_number_filter(numbers):
+    for num in numbers:
+        if num % 2 == 0:
+            yield num
 
 
-my_dictionary = {"a": 1, "b": 2, "c": 3}
-dict_iter = DictKeyIterator(my_dictionary)
-for key in dict_iter:
-    print(key)
+numbers = [1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11, 12, 13, 14, 15, 16]
+even_nums = even_number_filter(numbers)
+for num in even_nums:
+    print(num)
+
