@@ -3,25 +3,31 @@
 """
 
 
-def isprime(n):
-    if n == 1:
-        return False
-    for x in range(2, int(n ** 0.5) + 1):
-        if n % x == 0:
-            return False
-    return True
+class PalindromeIterator:
+    def __init__(self, word_list):
+        self.end_point = 0
+        self.word_list = word_list
+
+    def __iter__(self):
+        return self
+
+    def __next__(self):
+        while self.end_point < len(self.word_list):
+            word = self.word_list[self.end_point]
+            self.end_point += 1
+            if word == word[::-1]:
+                return word
+        raise StopIteration
 
 
-def prime_generator(n=2):
-    while True:
-        if isprime(n):
-            yield n
-        n += 1
+word_list = ["level", "racecar", "python", "madam"]
+palindrome_iter = PalindromeIterator(word_list)
+for word in palindrome_iter:
+    print(word)
 
 
-prime_gen = prime_generator()
-for i in range(10):
-    print(next(prime_gen))
+
+
 
 
 
