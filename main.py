@@ -1,16 +1,27 @@
 """
-Напишіть генератор, який повертає послідовність чисел Фібоначчі.
+Створіть ітератор який буде приймати рядок та кожен виклик методу next()
+буде повертати наступний символ рядку.
 """
 
 
-def fibonacci_generator():
-    a, b = 0, 1
-    while True:
-        yield a
-        a, b = b, a + b
+class NextLetter:
+    def __init__(self, string):
+        self.string = string
+        self.index = 0
+
+    def __iter__(self):
+        return self
+
+    def __next__(self):
+        if self.index < len(self.string):
+            result = self.string[self.index]
+            self.index += 1
+            return result
+        else:
+            raise StopIteration
 
 
-my_fibonacci_generator = fibonacci_generator()
-
-for n in range(21):
-    print(next(my_fibonacci_generator))
+string = "Hello, world!"
+str_itr = NextLetter(string)
+for char in string:
+    print(char)
